@@ -3,8 +3,8 @@
 int Valores[7] = {12, -5, 8, -10, 7, -3, 20};
 
 //declaracion:
-int ContarPositivos(int *pValores, int &positivos);
-int ContarNegativos(int *pValores, int &negativos);
+int ContarPositivos(int *pValores, int *pPositivos);
+int ContarNegativos(int *pValores, int *pNegativos);
 
 
 int main(){
@@ -13,37 +13,47 @@ int main(){
    int negativos = 0;
    int ceros = 0;
 
+   int *pPositivos = &positivos;
+   int *pNegativos = &negativos;
+   int *pCeros = &ceros;
+
    int *pValores = Valores;
 
    for (int i = 0; i < 7; i++)
    {
     std::cout << "el valor de los numeros son: "<<*pValores <<std::endl;
     
-    ContarPositivos(pValores,positivos);
-    ContarNegativos(pValores,negativos);
+    ContarPositivos(pValores,pPositivos);
+    ContarNegativos(pValores,pNegativos);
     pValores++;
    }
 
-    std::cout << "Los positivos en el conjunto son : "<<positivos<<std::endl;
-    std::cout << "Los negativos en el conjunto son : "<<negativos<<std::endl;
+    std::cout << "Los positivos en el conjunto son : "<<*pPositivos<<std::endl;
+    std::cout << "Los negativos en el conjunto son : "<<*pNegativos<<std::endl;
+   
+    
    
 }
 
-int ContarPositivos(int *pValores, int &positivos){
+int ContarPositivos(int *pValores, int *pPositivos){
 
     if (*pValores>0)
     {
-        positivos += 1;
+        *pPositivos += 1;
     }
     
-    return positivos;
+    return *pPositivos;
 }
-int ContarNegativos(int *pValores, int &negativos){
+int ContarNegativos(int *pValores, int *pNegativos){
 
     if (*pValores<0)
     {
-        negativos += 1;
+        *pNegativos += 1;
     }
     
-    return negativos;
+    return *pNegativos;
+}
+int ContarCeros (int *pValores, int *pCeros){
+
+    
 }
